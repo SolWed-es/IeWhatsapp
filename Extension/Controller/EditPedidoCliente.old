@@ -1,0 +1,49 @@
+<?php
+
+namespace FacturaScripts\Plugins\IeWhatsapp\Extension\Controller;
+use FacturaScripts\Core\Base\DataBase\DataBaseWhere;
+use FacturaScripts\Dinamic\Model\PedidoCliente;
+use FacturaScripts\Dinamic\Model\Cliente;
+
+class EditPedidoCliente{
+
+  public function createViews() {
+
+      return function(){
+        $this->addButton($this->getMainViewName(), [
+            'action' => 'openwhatsapp',
+            'color' => 'success',
+            'icon' => 'fab fa-whatsapp',
+            'label' => 'Enviar Whatsapp'
+        ]);
+      };
+
+  }
+
+  protected function execAfterAction(){
+    return function($action) {
+
+      switch ($action) {
+          case 'openwhatsapp':
+/*
+          $idpedido = $this->request->request->get('idpedido');
+          $modelPedido = new PedidoCliente();
+          $Pedido = $modelPedido->get($idpedido);
+          $total = $Pedido->total;
+*/
+          $subject = $this->views['EditPedidoCliente']->model->getSubject();
+          $telefono2 = $subject->telefono2;
+
+          $this->toolBox()->i18nLog()->notice('https://api.whatsapp.com/send?phone=34'
+          . $telefono2
+          . '&text=INFOESTRELLA. Tu equipo está listo, puedes recogerlo de 9:00 a 14:00 o de 17:00 a 20:00. Importe: '
+          . $this->views['EditPedidoCliente']->model->total
+          . 'eur. Más  información en el 924544528. Gracias por confiar en nosotros y ¡cuídate!');
+
+      }
+      return true;
+
+    };
+  }
+
+}

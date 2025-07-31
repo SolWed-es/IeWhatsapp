@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view>
+    <columns>
+        <group name="data" numcolumns="12" valign="top" title="Data para Envo de Whatsapp" icon="fab fa-whatsapp">
+            <column name="name" display="none" order="0">
+                <widget type="text" fieldname="name" readonly="true" required="true" />
+             </column>
+            <column name="prefijo" order="110" title="Prefijo" numcolumns="2">
+                <widget type="number" fieldname="prefijo" icon="fas fa-globe"/>
+            </column>
+        </group>
+        <group name="datadoc" numcolumns="12" valign="top" title="Data para Documentos" icon="fas fa-file-signature">
+            <column name="inicio" order="100" title="Texto de Inicio" description="Texto de inicio" numcolumns="6">
+                <widget type="textarea" fieldname="inicio" />
+            </column>
+            <column name="fin" order="110" title="Texto Final" description="Texto final del mensaje" numcolumns="6">
+                <widget type="textarea" fieldname="fin" />
+            </column>
+            <column name="totaldoc" display="center" order="140" title="Mostrar el total del documento">
+                <widget type="checkbox" fieldname="totaldoc"/>
+            </column>
+        </group>
+        <group name="datacliente" numcolumns="12" valign="top" title="Data para envio a clientes" icon="fab fa-reddit-alien">
+            <column name="msgcliente" order="210" title="Texto para envio al cliente" description="Texto de Para el cliente">
+                <widget type="textarea" fieldname="msgcliente" />
+            </column>
+        </group>
+    </columns>
+</view>
